@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Investor Page 4 — Rollout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 1080px 1080px; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2233; }
+
+  :root {
+    --bg: #E4DFDA;
+    --bg-2: #D8D2CB;
+    --bg-3: #C9C2B8;
+    --ink: #011D4D;
+    --ink-2: #0F2E5C;
+    --muted: #5A6B85;
+    --muted-2: #8794AB;
+    --line: #C5BFB5;
+    --line-2: #B0AAA0;
+    --gold: #63372C;
+    --gold-soft: #C4A595;
+    --gold-deep: #4A2820;
+    --navy: #034078;
+    --navy-soft: #B5C7DD;
+    --forest: #1282A2;
+    --forest-soft: #B3D9E3;
+    --peach: #1282A2;
+    --peach-soft: #B3D9E3;
+    --peach-deep: #0A6680;
+    --mint: #E4DFDA;
+    --dark-card: #011D4D;
+  }
+
+  .slide {
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Calibri', 'Carlito', 'Trebuchet MS', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.55; z-index: 0;
+    background:
+      radial-gradient(ellipse 800px 500px at 100% 0%, rgba(18,130,162,0.10), transparent 65%),
+      radial-gradient(ellipse 700px 600px at 0% 100%, rgba(99,55,44,0.08), transparent 65%);
+  }
+
+  /* chrome */
+  .chrome {
+    position: absolute; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 36px 60px;
+    z-index: 5;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand .accent {
+    width: 4px; height: 36px;
+    background: var(--navy); border-radius: 2px;
+  }
+  .brand .nm-block { display: flex; flex-direction: column; gap: 2px; }
+  .brand .nm { font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; line-height: 1.05; }
+  .brand .url { font-size: 12px; color: var(--muted); letter-spacing: 0.02em; line-height: 1; }
+  .page-num { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.18em; }
+
+  /* hero */
+  .hero { position: absolute; left: 60px; right: 60px; top: 110px; z-index: 2; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: var(--peach-deep);
+    letter-spacing: 0.20em; text-transform: uppercase;
+  }
+  .eyebrow .bar { width: 28px; height: 2px; background: var(--peach-deep); }
+  .h1 {
+    font-size: 64px; line-height: 1.04; letter-spacing: -0.02em;
+    font-weight: 700; color: var(--ink);
+    margin: 16px 0 12px 0;
+  }
+  .h1 .accent-gold { color: var(--gold-deep); }
+  .h1 .accent-navy { color: var(--navy); }
+  .h1 .accent-forest { color: var(--navy); }
+  .lead {
+    font-size: 17px; line-height: 1.55; color: var(--muted);
+    max-width: 880px; margin: 0; font-weight: 400;
+  }
+
+  /* 5-step rollout */
+  .rollout-section {
+    position: absolute; left: 60px; right: 60px; top: 360px; z-index: 2;
+  }
+  .section-bar {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 12px; border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 20px;
+  }
+  .section-bar .l {
+    font-size: 12.5px; font-weight: 700; color: var(--ink); letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .section-bar .l b { color: var(--gold-deep); }
+  .section-bar .r {
+    font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase;
+  }
+
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    align-items: stretch;
+    position: relative;
+  }
+  .step-card {
+    background: var(--bg-2);
+    border: 1.5px solid var(--ink);
+    border-radius: 12px;
+    padding: 16px 14px;
+    box-shadow: 4px 4px 0 var(--ink);
+    display: flex; flex-direction: column;
+    min-height: 230px;
+    position: relative;
+    overflow: hidden;
+  }
+  .step-card .step-num {
+    font-size: 32px; font-weight: 800; line-height: 1; letter-spacing: -0.04em;
+    margin-bottom: 6px;
+  }
+  .step-card.c-gold .step-num { color: var(--gold); }
+  .step-card.c-navy .step-num { color: var(--navy); }
+  .step-card.c-forest .step-num { color: var(--forest); }
+  .step-card.c-finale {
+    background: #011D4D; color: #fff;
+    box-shadow: 4px 4px 0 var(--forest);
+  }
+  .step-card.c-finale::before {
+    content: ""; position: absolute; right: -40px; top: -40px; width: 140px; height: 140px;
+    background: radial-gradient(closest-side, rgba(18,130,162,0.30), transparent 70%);
+    pointer-events: none;
+  }
+  .step-card.c-finale .step-num { color: var(--forest); position: relative; z-index: 2; }
+  .step-card.c-finale .step-name { color: #fff; position: relative; z-index: 2; }
+  .step-card.c-finale .step-desc { color: rgba(255,255,255,0.70); position: relative; z-index: 2; }
+  .step-card.c-finale .star {
+    position: absolute; top: 14px; right: 14px; z-index: 2;
+    color: var(--forest);
+  }
+  .step-card .step-name {
+    font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.1; letter-spacing: -0.012em;
+    margin-bottom: 8px;
+  }
+  .step-card .step-desc {
+    font-size: 12.5px; color: var(--muted); line-height: 1.4; margin-top: auto;
+  }
+
+  /* arrows between steps */
+  .step-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 14px; height: 14px;
+    color: var(--ink-2);
+    z-index: 3; pointer-events: none;
+  }
+
+  /* Goal callout */
+  .goal-band {
+    position: absolute; left: 60px; right: 60px; top: 690px; z-index: 2;
+    background: var(--ink); color: var(--bg);
+    border-radius: 14px; padding: 20px 28px;
+    display: grid; grid-template-columns: auto 1fr auto auto; gap: 26px; align-items: center;
+    box-shadow: 4px 4px 0 var(--forest);
+  }
+  .goal-band .pin {
+    background: var(--forest); color: #fff;
+    padding: 6px 11px; border-radius: 6px;
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .goal-band .principle {
+    font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.005em; line-height: 1.2;
+  }
+  .goal-band .principle em { font-style: italic; color: var(--forest-soft); font-weight: 700; }
+  .goal-band .stat {
+    text-align: center;
+    border-left: 1px solid rgba(255,255,255,0.18);
+    padding-left: 24px;
+  }
+  .goal-band .stat:first-of-type { border-left: none; padding-left: 0; }
+  .goal-band .stat .n { font-size: 28px; font-weight: 800; color: var(--forest-soft); line-height: 1; letter-spacing: -0.02em; }
+  .goal-band .stat .l { font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,0.65); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 5px; }
+
+  /* Contact card */
+  .contact-section {
+    position: absolute; left: 60px; right: 60px; bottom: 60px; z-index: 2;
+  }
+  .contact-card {
+    background: var(--bg);
+    border: 1.5px solid var(--ink);
+    border-radius: 14px;
+    padding: 22px 28px;
+    box-shadow: 4px 4px 0 var(--ink);
+    display: grid; grid-template-columns: auto 1fr auto; gap: 26px; align-items: center;
+  }
+  .contact-card .headshot {
+    width: 110px; height: 110px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #011D4D 0%, #034078 50%, #1282A2 100%);
+    color: rgba(255,255,255,0.55);
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 4px 4px 0 var(--forest);
+    overflow: hidden;
+    position: relative;
+    border: 1.5px solid var(--ink);
+  }
+  .contact-card .headshot img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+  }
+  .contact-card .headshot svg {
+    width: 64px; height: 64px;
+  }
+  .contact-card .ttl-block .lab {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--forest);
+    margin-bottom: 4px;
+  }
+  .contact-card .ttl-block .nm {
+    font-size: 28px; font-weight: 700; color: var(--ink); letter-spacing: -0.015em; line-height: 1.1;
+  }
+  .contact-card .ttl-block .role {
+    font-size: 13.5px; color: var(--muted); margin-top: 5px; line-height: 1.35;
+  }
+  .contact-card .ttl-block .role b { color: var(--ink); font-weight: 700; }
+  .contact-card .info {
+    display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
+  }
+  .contact-card .info-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em;
+  }
+  .contact-card .info-row .ic {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--bg-2);
+    border: 1px solid var(--line-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink); flex-shrink: 0;
+  }
+  .contact-card .info-row .ic svg { width: 12px; height: 12px; }
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <div class="chrome">
+    <div class="brand">
+      <div class="accent"></div>
+      <div class="nm-block">
+        <div class="nm">Tanishq Gulati</div>
+        <div class="url">tanishq-portfolio.com</div>
+      </div>
+    </div>
+    <div class="page-num">04 / 04</div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow"><span class="bar"></span>Design Partnership</div>
+    <h1 class="h1">
+      <span class="accent-gold">30 days.</span> One use case.<br/>
+      <span class="accent-forest">Real value, first.</span>
+    </h1>
+    <p class="lead">A design partnership that ships a working agent on your team's data. Start with the highest-leverage use case, prove value, then expand the playbook from there.</p>
+  </div>
+
+  <div class="rollout-section">
+    <div class="section-bar">
+      <div class="l">The rollout · <b>5 stages, one use case</b></div>
+      <div class="r">Each stage closes with a real artefact</div>
+    </div>
+
+    <div class="roadmap">
+      <div class="step-card c-gold">
+        <div class="step-num">01</div>
+        <div class="step-name">Problem<br/>Discovery</div>
+        <div class="step-desc">Map the workflow, the pain, the where-time-goes. Pick the use case that matters most.</div>
+      </div>
+      <div class="step-card c-navy">
+        <div class="step-num">02</div>
+        <div class="step-name">Solution<br/>Discovery</div>
+        <div class="step-desc">Define the agent, the inputs, the output, the standard it needs to meet.</div>
+      </div>
+      <div class="step-card c-forest">
+        <div class="step-num">03</div>
+        <div class="step-name">Prototype</div>
+        <div class="step-desc">First working version on your real data. We test, refine, run it together.</div>
+      </div>
+      <div class="step-card c-gold">
+        <div class="step-num">04</div>
+        <div class="step-name">Development</div>
+        <div class="step-desc">Productionize the agent, integrate the data sources, harden the output.</div>
+      </div>
+      <div class="step-card c-finale">
+        <svg class="star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5L18.2 22 12 17.5 5.8 22l2.4-8.1L2 9.4h7.6z"/>
+        </svg>
+        <div class="step-num">05</div>
+        <div class="step-name">Custom AI<br/>ecosystem</div>
+        <div class="step-desc">Product, agents, data layer, ready for your team. Then we keep expanding it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="goal-band">
+    <div class="pin">Goal</div>
+    <div class="principle">Deliver <em>value first.</em> Then expand from there.</div>
+    <div class="stat"><div class="n">30 days</div><div class="l">to first agent</div></div>
+    <div class="stat"><div class="n">1 use case</div><div class="l">end to end</div></div>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-card">
+      <div class="headshot">
+        <img src="tanishq.jpg" alt="Tanishq Gulati"/>
+      </div>
+      <div class="ttl-block">
+        <div class="lab">Let's talk</div>
+        <div class="nm">Tanishq Gulati</div>
+        <div class="role"><b>AI product builder</b> for investment teams.</div>
+      </div>
+      <div class="info">
+        <div class="info-row">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/>
+            </svg>
+          </span>
+          gulatitanishq2406@gmail.com
+        </div>
+        <div class="info-row">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </span>
+          +1 408 390 3234
+        </div>
+        <div class="info-row">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/>
+            </svg>
+          </span>
+          tanishq-portfolio.com
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

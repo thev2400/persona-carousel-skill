@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Investor Page 2 — Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 1080px 1080px; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2233; }
+
+  :root {
+    --bg: #E4DFDA;
+    --bg-2: #D8D2CB;
+    --bg-3: #C9C2B8;
+    --ink: #011D4D;
+    --ink-2: #0F2E5C;
+    --muted: #5A6B85;
+    --muted-2: #8794AB;
+    --line: #C5BFB5;
+    --line-2: #B0AAA0;
+    --gold: #63372C;
+    --gold-soft: #C4A595;
+    --gold-deep: #4A2820;
+    --navy: #034078;
+    --navy-soft: #B5C7DD;
+    --navy-deep: #022B55;
+    --forest: #1282A2;
+    --forest-soft: #B3D9E3;
+    --peach: #1282A2;
+    --peach-soft: #B3D9E3;
+    --peach-deep: #0A6680;
+    --mint: #E4DFDA;
+    --dark-card: #011D4D;
+  }
+
+  .slide {
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Calibri', 'Carlito', 'Trebuchet MS', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.55; z-index: 0;
+    background:
+      radial-gradient(ellipse 800px 500px at 100% 0%, rgba(18,130,162,0.10), transparent 65%),
+      radial-gradient(ellipse 700px 600px at 0% 100%, rgba(99,55,44,0.08), transparent 65%);
+  }
+
+  /* chrome */
+  .chrome {
+    position: absolute; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 36px 60px;
+    z-index: 5;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand .accent {
+    width: 4px; height: 36px;
+    background: var(--navy); border-radius: 2px;
+  }
+  .brand .nm-block { display: flex; flex-direction: column; gap: 2px; }
+  .brand .nm { font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; line-height: 1.05; }
+  .brand .url { font-size: 12px; color: var(--muted); letter-spacing: 0.02em; line-height: 1; }
+  .page-num { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.18em; }
+
+  /* hero */
+  .hero { position: absolute; left: 60px; right: 60px; top: 130px; z-index: 2; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.20em; text-transform: uppercase;
+  }
+  .eyebrow .bar { width: 28px; height: 2px; background: var(--navy); }
+  .h1 {
+    font-size: 64px; line-height: 1.04; letter-spacing: -0.02em;
+    font-weight: 700; color: var(--ink);
+    margin: 16px 0 12px 0;
+  }
+  .h1 .accent-gold { color: var(--gold-deep); }
+  .h1 .accent-navy { color: var(--navy); }
+  .h1 .accent-forest { color: var(--peach-deep); }
+  .lead {
+    font-size: 18px; line-height: 1.55; color: var(--muted);
+    max-width: 880px; margin: 0; font-weight: 400;
+  }
+
+  /* section bar */
+  .section-bar {
+    position: absolute; left: 60px; right: 60px; top: 376px; z-index: 2;
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 13px; border-bottom: 1.5px solid var(--ink);
+  }
+  .section-bar .l {
+    font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .section-bar .l .pill-skills { color: var(--navy); margin: 0 4px; }
+  .section-bar .l .plus { color: var(--muted); font-weight: 400; padding: 0 4px; }
+  .section-bar .l .pill-intel { color: var(--peach-deep); }
+  .section-bar .r {
+    font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase;
+  }
+
+  /* skills grid */
+  .grid {
+    position: absolute; left: 60px; right: 60px; top: 426px; z-index: 2;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .skill-card {
+    background: var(--bg-2);
+    border: 1.5px solid var(--ink);
+    border-radius: 14px;
+    padding: 22px 22px 20px 22px;
+    box-shadow: 4px 4px 0 var(--ink);
+    position: relative;
+    min-height: 218px;
+    display: flex; flex-direction: column;
+  }
+  .skill-card .top-row {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .skill-card .num {
+    font-size: 56px; font-weight: 700; line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+  .skill-card.c-gold .num { color: var(--gold-deep); }
+  .skill-card.c-navy .num { color: var(--navy); }
+  .skill-card.c-forest .num { color: var(--peach-deep); }
+
+  .skill-card .ic-wrap {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--bg);
+    border: 1.5px solid var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--ink);
+  }
+  .skill-card .ic-wrap svg { width: 18px; height: 18px; }
+  .skill-card .name {
+    font-size: 23px; font-weight: 700; color: var(--ink);
+    line-height: 1.1; letter-spacing: -0.012em;
+    margin: 4px 0 10px 0;
+  }
+  .skill-card .value {
+    font-size: 14.5px; font-weight: 400; color: var(--ink-2);
+    line-height: 1.42; margin: auto 0 0 0;
+  }
+
+  /* Intel card — distinct */
+  .intel-card {
+    background: #011D4D;
+    border: 1.5px solid var(--ink);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 4px 4px 0 var(--forest);
+    color: var(--bg);
+    position: relative;
+    min-height: 218px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .intel-card::before {
+    content: ""; position: absolute; right: -60px; top: -60px; width: 200px; height: 200px;
+    background: radial-gradient(closest-side, rgba(18,130,162,0.30), transparent 70%);
+    pointer-events: none;
+  }
+  .intel-card .top-row {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 12px; position: relative; z-index: 2;
+  }
+  .intel-card .always-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    background: rgba(255,255,255,0.10); color: var(--peach);
+    padding: 5px 9px; border-radius: 999px;
+    border: 1px solid rgba(255,203,154,0.45);
+  }
+  .intel-card .always-tag .pulse {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--peach);
+  }
+  .intel-card .ic-wrap {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(255,255,255,0.10); border: 1.5px solid rgba(255,255,255,0.20);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--peach);
+  }
+  .intel-card .name {
+    font-size: 23px; font-weight: 700; color: #fff;
+    line-height: 1.1; letter-spacing: -0.012em;
+    margin: 6px 0 4px 0;
+    position: relative; z-index: 2;
+  }
+  .intel-card .value {
+    font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.65);
+    line-height: 1.42; margin: 0 0 12px 0;
+    position: relative; z-index: 2;
+  }
+  .intel-card .sub-pills {
+    display: flex; gap: 8px; margin-top: auto; flex-wrap: wrap;
+    position: relative; z-index: 2;
+  }
+  .intel-card .sub-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12px; font-weight: 700; letter-spacing: -0.005em;
+    padding: 7px 11px; border-radius: 999px;
+    background: rgba(255,255,255,0.08); color: #fff;
+    border: 1px solid rgba(255,255,255,0.16);
+  }
+  .intel-card .sub-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .intel-card .sub-pill.pk .dot { background: var(--peach); }
+  .intel-card .sub-pill.hl .dot { background: var(--mint); }
+
+  /* personalization band — bottom */
+  .perso-band {
+    position: absolute; left: 60px; right: 60px; bottom: 60px; z-index: 2;
+    background: var(--ink); color: var(--bg);
+    border-radius: 16px; padding: 20px 26px;
+    display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center;
+    box-shadow: 4px 4px 0 var(--forest);
+  }
+  .perso-band .sig-mark {
+    width: 14px; height: 56px;
+    border-radius: 4px;
+    background: var(--forest);
+    flex-shrink: 0;
+  }
+  .perso-band .body-text {
+    font-size: 14.5px; line-height: 1.45; color: rgba(255,255,255,0.78);
+  }
+  .perso-band .body-text .lead-line {
+    color: #fff; font-weight: 700; font-size: 17px; letter-spacing: -0.005em; margin-bottom: 4px;
+  }
+  .perso-band .body-text .lead-line .gold { color: var(--peach); }
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <div class="chrome">
+    <div class="brand">
+      <div class="accent"></div>
+      <div class="nm-block">
+        <div class="nm">Tanishq Gulati</div>
+        <div class="url">tanishq-portfolio.com</div>
+      </div>
+    </div>
+    <div class="page-num">02 / 04</div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow"><span class="bar"></span>The Playbook</div>
+    <h1 class="h1">
+      The investor's <span class="accent-navy">go-to</span><br/>
+      <span class="accent-forest">playbook.</span>
+    </h1>
+    <p class="lead">Five custom AI agents the team runs on demand, plus an always-on intelligence layer keeping watch in the background.</p>
+  </div>
+
+  <div class="section-bar">
+    <div class="l">
+      The agent set ·<span class="pill-skills"> 5 plays</span><span class="plus">+</span><span class="pill-intel">intelligence</span>
+    </div>
+    <div class="r">On demand <span style="color:var(--muted);font-weight:400;letter-spacing:0;">/</span> always on</div>
+  </div>
+
+  <div class="grid">
+    <div class="skill-card c-gold">
+      <div class="top-row">
+        <div class="num">01</div>
+        <div class="ic-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="name">Deal<br/>Brief</div>
+      <div class="value">Score, summarize, and surface the deals that need you first.</div>
+    </div>
+
+    <div class="skill-card c-navy">
+      <div class="top-row">
+        <div class="num">02</div>
+        <div class="ic-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3 5-5"/><rect x="3" y="3" width="18" height="18" rx="3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="name">DD<br/>Diagnosis</div>
+      <div class="value">Synthesize all your due-diligence inputs into one read.</div>
+    </div>
+
+    <div class="skill-card c-forest">
+      <div class="top-row">
+        <div class="num">03</div>
+        <div class="ic-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><path d="M2.5 12h19M12 2.5a14 14 0 010 19M12 2.5a14 14 0 000 19"/>
+          </svg>
+        </div>
+      </div>
+      <div class="name">Portfolio<br/>Pulse</div>
+      <div class="value">Spot what's changing across portcos before it becomes a fire.</div>
+    </div>
+
+    <div class="skill-card c-gold">
+      <div class="top-row">
+        <div class="num">04</div>
+        <div class="ic-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <path d="M14 2v6h6M9 13h6M9 17h4"/>
+          </svg>
+        </div>
+      </div>
+      <div class="name">LP<br/>Memo</div>
+      <div class="value">Portfolio shifts turned into a tight investor update.</div>
+    </div>
+
+    <div class="skill-card c-navy">
+      <div class="top-row">
+        <div class="num">05</div>
+        <div class="ic-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/>
+          </svg>
+        </div>
+      </div>
+      <div class="name">Market<br/>Brief</div>
+      <div class="value">Comps, news, and moves in your sectors, packaged tight.</div>
+    </div>
+
+    <div class="intel-card">
+      <div class="top-row">
+        <div class="always-tag">
+          <span class="pulse"></span>
+          Always on
+        </div>
+        <div class="ic-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h3l3-9 4 18 3-9h5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="name">Intelligence</div>
+      <div class="value">Tracked signals and highlights, watching while you work.</div>
+      <div class="sub-pills">
+        <span class="sub-pill pk"><span class="dot"></span>Actionable insights</span>
+        <span class="sub-pill hl"><span class="dot"></span>Surface what matters</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="perso-band">
+    <div class="sig-mark"></div>
+    <div class="body-text">
+      <div class="lead-line">The playbook gets written first. <span class="gold">Then it keeps expanding.</span></div>
+      Every agent above is custom — tuned to your thesis, your sectors, your funnel, the way you actually work. New use cases shape new agents.
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

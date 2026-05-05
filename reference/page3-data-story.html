@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Investor Page 3 — Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 1080px 1080px; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2233; }
+
+  :root {
+    --bg: #E4DFDA;
+    --bg-2: #D8D2CB;
+    --bg-3: #C9C2B8;
+    --ink: #011D4D;
+    --ink-2: #0F2E5C;
+    --muted: #5A6B85;
+    --muted-2: #8794AB;
+    --line: #C5BFB5;
+    --line-2: #B0AAA0;
+    --gold: #63372C;
+    --gold-soft: #C4A595;
+    --gold-deep: #4A2820;
+    --navy: #034078;
+    --navy-soft: #B5C7DD;
+    --forest: #1282A2;
+    --forest-soft: #B3D9E3;
+    --peach: #1282A2;
+    --peach-soft: #B3D9E3;
+    --peach-deep: #0A6680;
+    --mint: #E4DFDA;
+    --dark-card: #011D4D;
+  }
+
+  .slide {
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Calibri', 'Carlito', 'Trebuchet MS', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.5; z-index: 0;
+    background:
+      radial-gradient(ellipse 800px 500px at 100% 0%, rgba(17,100,102,0.08), transparent 65%),
+      radial-gradient(ellipse 700px 600px at 0% 100%, rgba(255,203,154,0.14), transparent 65%);
+  }
+
+  /* chrome */
+  .chrome {
+    position: absolute; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 36px 60px;
+    z-index: 5;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand .accent {
+    width: 4px; height: 36px;
+    background: var(--navy); border-radius: 2px;
+  }
+  .brand .nm-block { display: flex; flex-direction: column; gap: 2px; }
+  .brand .nm { font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; line-height: 1.05; }
+  .brand .url { font-size: 12px; color: var(--muted); letter-spacing: 0.02em; line-height: 1; }
+  .page-num { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.18em; }
+
+  /* hero */
+  .hero { position: absolute; left: 60px; right: 60px; top: 110px; z-index: 2; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.20em; text-transform: uppercase;
+  }
+  .eyebrow .bar { width: 28px; height: 2px; background: var(--navy); }
+  .h1 {
+    font-size: 60px; line-height: 1.04; letter-spacing: -0.02em;
+    font-weight: 700; color: var(--ink);
+    margin: 16px 0 12px 0;
+  }
+  .h1 .accent-gold { color: var(--gold-deep); }
+  .h1 .accent-forest { color: var(--navy); }
+  .lead {
+    font-size: 17px; line-height: 1.55; color: var(--muted);
+    max-width: 880px; margin: 0; font-weight: 400;
+  }
+
+  /* —— brain card —— */
+  .brain-row {
+    position: absolute; left: 0; right: 0; top: 364px; z-index: 2;
+    display: flex; justify-content: center;
+  }
+  .brain-card {
+    background: #011D4D;
+    color: #fff;
+    border: 1.5px solid var(--ink);
+    border-radius: 14px;
+    padding: 14px 22px;
+    box-shadow: 4px 4px 0 var(--forest);
+    display: flex; align-items: center; gap: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .brain-card::before {
+    content: ""; position: absolute; right: -50px; top: -50px; width: 160px; height: 160px;
+    background: radial-gradient(closest-side, rgba(18,130,162,0.30), transparent 70%);
+    pointer-events: none;
+  }
+  .brain-card .ic-wrap {
+    width: 42px; height: 42px; border-radius: 11px;
+    background: rgba(255,255,255,0.10); border: 1.5px solid rgba(255,255,255,0.20);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--forest); flex-shrink: 0;
+  }
+  .brain-card .lab { font-size: 10px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin: 0; }
+  .brain-card .nm { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.01em; line-height: 1.1; margin-top: 2px; }
+
+  .connectors {
+    position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+    pointer-events: none; z-index: 1;
+  }
+
+  /* Q2 row equivalent */
+  .src-section {
+    position: absolute; left: 60px; right: 60px; top: 478px; z-index: 2;
+  }
+  .section-bar {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 12px; border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 18px;
+  }
+  .section-bar .l {
+    font-size: 12.5px; font-weight: 700; color: var(--ink); letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .section-bar .l b { color: var(--navy); }
+  .section-bar .r {
+    font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase;
+  }
+
+  .src-row { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 16px; }
+  .src-card {
+    background: var(--bg-2);
+    border: 1.5px solid var(--ink);
+    border-radius: 14px;
+    padding: 16px 16px 14px 16px;
+    box-shadow: 4px 4px 0 var(--ink);
+    display: flex; flex-direction: column;
+  }
+  .src-card .top {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .src-card .nm {
+    font-size: 19px; font-weight: 700; color: var(--ink); letter-spacing: -0.012em; line-height: 1.1;
+  }
+  .src-card .ic {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: var(--bg); border: 1.5px solid var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink); flex-shrink: 0;
+  }
+  .src-card .ic.gold { color: var(--gold); }
+  .src-card .ic.navy { color: var(--navy); }
+  .src-card .ic.forest { color: var(--forest); }
+  .src-card .blurb {
+    font-size: 13px; color: var(--muted); line-height: 1.4;
+    margin: 0 0 12px 0;
+  }
+  .src-card .integrations { display: flex; flex-direction: column; gap: 6px; margin-top: auto; }
+  .integ-row {
+    display: flex; align-items: center; gap: 9px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    padding: 6px 10px;
+    font-size: 13px; font-weight: 700; color: var(--ink);
+  }
+  .integ-row .lo { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .integ-row .lo svg { width: 100%; height: 100%; }
+  .integ-row .nat-tag {
+    margin-left: auto;
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--muted-2); background: transparent;
+    padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line-2);
+  }
+
+  /* human band */
+  .human-section {
+    position: absolute; left: 60px; right: 60px; top: 778px; z-index: 2;
+  }
+  .human-band {
+    background: linear-gradient(90deg, rgba(3,64,120,0.05), rgba(18,130,162,0.06));
+    border: 1.5px solid var(--ink);
+    border-left: 5px solid var(--forest);
+    border-radius: 12px;
+    padding: 12px 18px;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 22px;
+    align-items: center;
+  }
+  .human-band .hb-label {
+    font-size: 10.5px; font-weight: 700; color: var(--peach-deep);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    line-height: 1.25;
+    max-width: 130px;
+  }
+  .human-band .hb-label b { color: var(--ink); display: block; font-size: 12px; letter-spacing: 0.04em; margin-top: 2px; }
+  .human-band .hb-item { display: flex; align-items: center; gap: 12px; }
+  .human-band .hb-ic {
+    width: 32px; height: 32px; flex-shrink: 0;
+    border-radius: 9px;
+    background: #fff; border: 1.5px solid var(--ink);
+    color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .human-band .hb-ic svg { width: 16px; height: 16px; }
+  .human-band .hb-name {
+    font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.1; letter-spacing: -0.01em;
+  }
+  .human-band .hb-desc {
+    font-size: 12px; color: var(--muted); line-height: 1.35; margin-top: 2px;
+  }
+
+  /* future plug-ins */
+  .after-section {
+    position: absolute; left: 60px; right: 60px; bottom: 60px; z-index: 2;
+  }
+  .future-section-bar {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 10px; border-bottom: 1.5px dashed var(--forest);
+    margin-bottom: 14px;
+  }
+  .future-section-bar .l {
+    font-size: 12.5px; font-weight: 700; color: var(--forest); letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .future-section-bar .l b { color: var(--ink); }
+  .future-section-bar .r {
+    font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .after-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .plug-card {
+    background: transparent;
+    border: 1.5px dashed var(--forest);
+    border-radius: 12px;
+    padding: 14px 14px 13px 14px;
+    display: flex; flex-direction: column; gap: 6px;
+    position: relative;
+  }
+  .plug-card .nm {
+    font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.1; letter-spacing: -0.005em;
+  }
+  .plug-card .src {
+    font-size: 12px; color: var(--muted);
+    display: flex; align-items: center; gap: 6px; line-height: 1.3;
+  }
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <svg class="connectors" viewBox="0 0 1080 1080" preserveAspectRatio="none">
+    <path d="M 540 440 Q 540 480, 195 510" stroke="#15151E" stroke-width="1.2" fill="none" opacity="0.30"/>
+    <path d="M 540 440 L 540 510" stroke="#15151E" stroke-width="1.2" fill="none" opacity="0.30"/>
+    <path d="M 540 440 Q 540 480, 880 510" stroke="#15151E" stroke-width="1.2" fill="none" opacity="0.30"/>
+  </svg>
+
+  <div class="chrome">
+    <div class="brand">
+      <div class="accent"></div>
+      <div class="nm-block">
+        <div class="nm">Tanishq Gulati</div>
+        <div class="url">tanishq-portfolio.com</div>
+      </div>
+    </div>
+    <div class="page-num">03 / 04</div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow"><span class="bar"></span>The Data Layer</div>
+    <h1 class="h1">
+      Powered by what<br/>
+      <span class="accent-forest">you already see.</span>
+    </h1>
+    <p class="lead">Each agent draws on the deal flow, the conversations, and the market signals you already track. The more sources we plug in, the sharper every recommendation.</p>
+  </div>
+
+  <div class="brain-row">
+    <div class="brain-card">
+      <div class="ic-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12h3l3-9 4 18 3-9h5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="lab">Custom AI</div>
+        <div class="nm">Your operating brain</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="section-bar">
+      <div class="l">Active streams · <b>3 to start</b></div>
+      <div class="r">Powering every agent</div>
+    </div>
+
+    <div class="src-row">
+      <!-- 1. Pipeline / CRM -->
+      <div class="src-card">
+        <div class="top">
+          <div class="nm">Pipeline<br/>data</div>
+          <div class="ic gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3 5-5"/><rect x="3" y="3" width="18" height="18" rx="3"/>
+            </svg>
+          </div>
+        </div>
+        <p class="blurb">Deals, founders, owners, stage history.</p>
+        <div class="integrations">
+          <div class="integ-row">
+            <span class="lo">
+              <!-- Affinity logo (orange dot) -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#1A2533"/>
+                <path d="M8 16 L12 8 L16 16 M9.5 13 H14.5" stroke="#3674FF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Affinity · Salesforce</span>
+            <span class="nat-tag">CRM</span>
+          </div>
+          <div class="integ-row">
+            <span class="lo">
+              <!-- Notion / docs -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" fill="#fff" stroke="#15151E" stroke-width="1.5"/>
+                <path d="M8 7v10M8 7l8 10M16 7v10" stroke="#15151E" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              </svg>
+            </span>
+            <span>Notion · Google Docs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Conversations -->
+      <div class="src-card">
+        <div class="top">
+          <div class="nm">Conversations</div>
+          <div class="ic navy">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+          </div>
+        </div>
+        <p class="blurb">Pitches, founder calls, expert calls, IC notes.</p>
+        <div class="integrations">
+          <div class="integ-row">
+            <span class="lo">
+              <!-- Fireflies F -->
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g fill="#EC1F5A">
+                  <rect x="22" y="18" width="20" height="22"/>
+                  <path d="M 46 18 H 64 a 14 14 0 0 1 14 14 v 0 a 14 14 0 0 1 -14 14 H 46 Z"/>
+                  <rect x="22" y="44" width="20" height="20"/>
+                  <rect x="46" y="50" width="20" height="20"/>
+                  <path d="M 22 68 H 42 V 78 a 12 12 0 0 1 -12 12 H 30 a 8 8 0 0 1 -8 -8 Z"/>
+                </g>
+              </svg>
+            </span>
+            <span>Fireflies</span>
+          </div>
+          <div class="integ-row">
+            <span class="lo">
+              <!-- Gong burst -->
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke-linejoin="round">
+                <g fill="#7F4FFF">
+                  <polygon points="50,8 60,28 80,18 70,38 92,40 74,52 88,72 66,64 70,90 52,72 42,90 38,68 16,72 28,56 8,48 30,40 18,22 38,28 32,8 46,24"/>
+                </g>
+                <polygon fill="#fff" points="48,30 56,42 66,38 60,48 70,52 58,54 64,66 50,58 48,72 42,60 36,68 38,54 28,52 36,46 30,38 42,42"/>
+              </svg>
+            </span>
+            <span>Gong</span>
+          </div>
+          <div class="integ-row">
+            <span class="lo">
+              <!-- Tegus / expert call generic -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="4" fill="#1B5FAE"/>
+                <text x="12" y="16" text-anchor="middle" font-family="Calibri,sans-serif" font-weight="800" font-size="12" fill="#fff">T</text>
+              </svg>
+            </span>
+            <span>Tegus · expert calls</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Market data -->
+      <div class="src-card">
+        <div class="top">
+          <div class="nm">Market<br/>intelligence</div>
+          <div class="ic forest">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/>
+            </svg>
+          </div>
+        </div>
+        <p class="blurb">Comps, funding rounds, news, public filings.</p>
+        <div class="integrations">
+          <div class="integ-row">
+            <span class="lo">
+              <!-- PitchBook -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" fill="#FF6B35"/>
+                <text x="12" y="16" text-anchor="middle" font-family="Calibri,sans-serif" font-weight="800" font-size="12" fill="#fff">PB</text>
+              </svg>
+            </span>
+            <span>PitchBook · Crunchbase</span>
+          </div>
+          <div class="integ-row">
+            <span class="lo">
+              <!-- News / public -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" fill="#fff" stroke="#15151E" stroke-width="1.5"/>
+                <path d="M7 8h10M7 12h7M7 16h10" stroke="#15151E" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>News &amp; filings</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HUMAN LAYER -->
+  <div class="human-section">
+    <div class="human-band">
+      <div class="hb-label">
+        Your touch
+        <b>Personalises every output</b>
+      </div>
+      <div class="hb-item">
+        <div class="hb-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 016-6h4a6 6 0 016 6v1"/>
+          </svg>
+        </div>
+        <div>
+          <div class="hb-name">Your context, in</div>
+          <div class="hb-desc">Tell each agent what matters about a deal, sector, or partner before it runs.</div>
+        </div>
+      </div>
+      <div class="hb-item">
+        <div class="hb-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0115-6.7L21 8"/><path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 01-15 6.7L3 16"/><path d="M3 21v-5h5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="hb-name">Your feedback loop</div>
+          <div class="hb-desc">React to every output. Each agent tunes to your thesis, your style, your conviction.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AFTER -->
+  <div class="after-section">
+    <div class="future-section-bar">
+      <div class="l"><b>Plug-ins</b> · expand as the playbook grows</div>
+      <div class="r">Same agents, sharper signal</div>
+    </div>
+    <div class="after-row">
+      <div class="plug-card">
+        <div class="nm">Alt data</div>
+        <div class="src">Web traffic · usage</div>
+      </div>
+      <div class="plug-card">
+        <div class="nm">Financials</div>
+        <div class="src">P&amp;L · forecasts</div>
+      </div>
+      <div class="plug-card">
+        <div class="nm">References</div>
+        <div class="src">BG checks · citations</div>
+      </div>
+      <div class="plug-card">
+        <div class="nm">LP CRM</div>
+        <div class="src">Capital · relationships</div>
+      </div>
+      <div class="plug-card">
+        <div class="nm">Sector libs</div>
+        <div class="src">Specialised databases</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
