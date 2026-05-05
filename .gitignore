@@ -1,0 +1,5 @@
+.DS_Store
+reference/smoke-test-*
+__pycache__/
+*.pyc
+.venv/
